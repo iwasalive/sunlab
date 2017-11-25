@@ -24,14 +24,14 @@ function deployTemplate {
     [CmdletBinding()]
     Param (
         [Parameter(mandatory)] [String] $ResourceGroup,
-        [Parameter(mandatory)] [String] $TemplateFile,
+        [Parameter(mandatory)] [String] $TemplateUri,
         [Parameter(mandatory)] [String] $TemplateParamFile,
         [Parameter(mandatory)] [String] $Version
     )
     try {
         New-AzureRmResourceGroupDeployment `
             -ResourceGroupName $ResourceGroup `
-            -TemplateFile $TemplateFile `
+            -TemplateFile $TemplateUri `
             -TemplateParameterFile $TemplateParamFile 
             # -TemplateVersion $Version 
 
@@ -52,7 +52,7 @@ function createLab() {
     Param (
         [Parameter(mandatory)] [String] $ResourceGroup,
         [Parameter(mandatory)] [String] $Location,
-        [Parameter(mandatory)] [String] $TemplateFile,
+        [Parameter(mandatory)] [String] $TemplateUri,
         [Parameter(mandatory)] [String] $TemplateParamFile,
         [Parameter(mandatory)] [String] $Version
     )
@@ -61,7 +61,7 @@ function createLab() {
 
     deployTemplate `
         -ResourceGroup $ResourceGroup `
-        -TemplateFile $TemplateFile `
+        -TemplateUri $TemplateUri `
         -TemplateParamFile $TemplateParamFile `
         -Version $Version
 }

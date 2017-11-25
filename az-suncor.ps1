@@ -15,6 +15,6 @@
 createLab `
     -ResourceGroup "TestLab1" `
     -Location "East US" `
-    -TemplateFile "C:\Users\Administrator\Dropbox\projects\deloitte\Suncore\Dev\scripts\template\sunlab.json" `
-    -TemplateParamFile "C:\Users\Administrator\Dropbox\projects\deloitte\Suncore\Dev\scripts\template\sunlab-params.json" `
+    -TemplateUri "https://raw.githubusercontent.com/simkessy/sunlab/master/templates/sunlab.json" `
+    -TemplateParamFile "https://github.com/simkessy/sunlab/raw/master/templates/sunlab-params.json" `
     -Version "1.0"
