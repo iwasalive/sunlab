@@ -1,0 +1,1651 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "registries_sunlabRegistry_name": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "registries_sunlabRegistry_accessKey": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "serverfarms_EastUSPlan_name": {
+            "defaultValue": "EastUSPlan",
+            "type": "String"
+        },
+        "sites_deploy_arm_template_name": {
+            "defaultValue": "deploy-arm-template",
+            "type": "String"
+        },
+        "labs_sunlab_devtest_name": {
+            "defaultValue": "sunlab-devtest",
+            "type": "String"
+        },
+        "virtualMachines_sunlab_vm_name": {
+            "defaultValue": "sunlab-vm",
+            "type": "String"
+        },
+        "vaults_SunlabDevTest4770_name": {
+            "defaultValue": "SunlabDevTest4770",
+            "type": "String"
+        },
+        "networkInterfaces_sunlab_vm46_name": {
+            "defaultValue": "sunlab-vm46",
+            "type": "String"
+        },
+        "publicIPAddresses_sunlab_vm_ip_name": {
+            "defaultValue": "sunlab-vm-ip",
+            "type": "String"
+        },
+        "components_deploy_arm_template_name": {
+            "defaultValue": "deploy-arm-template",
+            "type": "String"
+        },
+        "config_web_name": {
+            "defaultValue": "web",
+            "type": "String"
+        },
+        "virtualNetworks_DtlSunlab_DevTest_name": {
+            "defaultValue": "DtlSunlab-DevTest",
+            "type": "String"
+        },
+        "storageAccounts_asunlabdevtest1530_name": {
+            "defaultValue": "asunlabdevtest1530",
+            "type": "String"
+        },
+        "registries_sunlabRegistry_name_1": {
+            "defaultValue": "sunlabRegistry",
+            "type": "String"
+        },
+        "networkSecurityGroups_sunlab_vm_nsg_name": {
+            "defaultValue": "sunlab-vm-nsg",
+            "type": "String"
+        },
+        "storageAccounts_deployarmtempla9851_name": {
+            "defaultValue": "deployarmtempla9851",
+            "type": "String"
+        },
+        "virtualNetworks_deloitte_suncor_vnet_name": {
+            "defaultValue": "deloitte-suncor-vnet",
+            "type": "String"
+        },
+        "storageAccounts_i4n4jln6suos4storage_name": {
+            "defaultValue": "i4n4jln6suos4storage",
+            "type": "String"
+        },
+        "schedules_shutdown_computevm_sunlab_vm_name": {
+            "defaultValue": "shutdown-computevm-sunlab-vm",
+            "type": "String"
+        },
+        "virtualNetworks_sunlab_containers_vm_vnet_name": {
+            "defaultValue": "sunlab-containers-vm_vnet",
+            "type": "String"
+        },
+        "networkInterfaces_sunlab_containers_vm_nic_name": {
+            "defaultValue": "sunlab-containers-vm_nic",
+            "type": "String"
+        },
+        "publicIPAddresses_sunlab_containers_vm_pubip_name": {
+            "defaultValue": "sunlab-containers-vm_pubip",
+            "type": "String"
+        },
+        "networkSecurityGroups_sunlab_containers_vm_nsg_name": {
+            "defaultValue": "sunlab-containers-vm_nsg",
+            "type": "String"
+        },
+        "artifactsources_public_repo_name": {
+            "defaultValue": "public repo",
+            "type": "String"
+        },
+        "alertrules_Failure_Anomalies___deploy_arm_template_name": {
+            "defaultValue": "Failure Anomalies - deploy-arm-template",
+            "type": "String"
+        },
+        "virtualmachines_sunlab_db_01_name": {
+            "defaultValue": "sunlab-db-01",
+            "type": "String"
+        },
+        "virtualmachines_sunlab_win_01_name": {
+            "defaultValue": "sunlab-win-01",
+            "type": "String"
+        },
+        "subnets_default_name": {
+            "defaultValue": "default",
+            "type": "String"
+        },
+        "virtualmachines_sunlab_controller_name": {
+            "defaultValue": "sunlab-controller",
+            "type": "String"
+        },
+        "virtualnetworks_dtlsunlab_devtest_name_1": {
+            "defaultValue": "dtlsunlab-devtest",
+            "type": "String"
+        },
+        "securityRules_RDP_name": {
+            "defaultValue": "RDP",
+            "type": "String"
+        },
+        "users_ed66b375_e37c_4065_ba98_2c32a6a5493f_name": {
+            "defaultValue": "ed66b375-e37c-4065-ba98-2c32a6a5493f",
+            "type": "String"
+        },
+        "users_10011369_7194_419a_a6d2_3fca4496bf2b_name": {
+            "defaultValue": "10011369-7194-419a-a6d2-3fca4496bf2b",
+            "type": "String"
+        },
+        "securityRules_HTTP_name": {
+            "defaultValue": "HTTP",
+            "type": "String"
+        },
+        "subnets_DtlSunlab_DevTestSubnet_name": {
+            "defaultValue": "DtlSunlab-DevTestSubnet",
+            "type": "String"
+        },
+        "securityRules_HTTPS_name": {
+            "defaultValue": "HTTPS",
+            "type": "String"
+        },
+        "securityRules_Docker_name": {
+            "defaultValue": "Docker",
+            "type": "String"
+        },
+        "securityRules_default_allow_rdp_name": {
+            "defaultValue": "default-allow-rdp",
+            "type": "String"
+        },
+        "hostNameBindings_deploy_arm_template.azurewebsites.net_name": {
+            "defaultValue": "deploy-arm-template.azurewebsites.net",
+            "type": "String"
+        },
+        "subnets_sunlab_containers_vm_subnet_name": {
+            "defaultValue": "sunlab-containers-vm_subnet",
+            "type": "String"
+        },
+        "virtualMachines_sunlab_vm_id": {
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/DELOITTE-SUNCOR/providers/Microsoft.Compute/disks/sunlab-vm_OsDisk_1_93d65bdc7a9849389897608f17289478",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Compute/virtualMachines/sunlab-vm'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sunlab_vm_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D4s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2016-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_sunlab_vm_name'),'_OsDisk_1_93d65bdc7a9849389897608f17289478')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "id": "[parameters('virtualMachines_sunlab_vm_id')]"
+                        }
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sunlab_vm_name')]",
+                    "adminUsername": "sunlab",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_vm46_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_vm46_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.ContainerRegistry/registries/sunlabRegistry'.",
+            "type": "Microsoft.ContainerRegistry/registries",
+            "name": "[parameters('registries_sunlabRegistry_name_1')]",
+            "apiVersion": "2016-06-27-preview",
+            "location": "eastus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "adminUserEnabled": true,
+                "storageAccount": {
+                    "name": "[parameters('registries_sunlabRegistry_name')]",
+                    "accessKey": "[parameters('registries_sunlabRegistry_accessKey')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest'.",
+            "type": "microsoft.devtestlab/labs",
+            "name": "[parameters('labs_sunlab_devtest_name')]",
+            "apiVersion": "2016-05-15",
+            "location": "eastus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "labStorageType": "Premium",
+                "premiumDataDisks": "Disabled",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "b6f6b323-183e-449e-b83e-c6a71f6c7aa1"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/schedules/shutdown-computevm-sunlab-vm'.",
+            "type": "microsoft.devtestlab/schedules",
+            "name": "[parameters('schedules_shutdown_computevm_sunlab_vm_name')]",
+            "apiVersion": "2016-05-15",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "status": "Enabled",
+                "taskType": "ComputeVmShutdownTask",
+                "dailyRecurrence": {
+                    "time": "1900"
+                },
+                "timeZoneId": "Mountain Standard Time",
+                "notificationSettings": {
+                    "status": "Enabled",
+                    "timeInMinutes": 30
+                },
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_vm_name'))]",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "3a2d4dd9-b0b9-411d-8223-97d921330d97"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_vm_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/microsoft.insights/alertrules/Failure Anomalies - deploy-arm-template'.",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_Failure_Anomalies___deploy_arm_template_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.insights/components/deploy-arm-template": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "name": "[parameters('alertrules_Failure_Anomalies___deploy_arm_template_name')]",
+                "description": "",
+                "isEnabled": true,
+                "condition": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('microsoft.insights/components', parameters('components_deploy_arm_template_name'))]",
+                        "metricNamespace": null,
+                        "metricName": "advanced::A3108E3D-5E26-44CF-B232-783F5E20EF10::ewAiAEgAeQBwAGUAcgBpAG8AbgBBAHAAcABsAGkAYwBhAHQAaQBvAG4AUwBpAGQAIgA6AG4AdQBsAGwALAAiAEgAeQBwAGUAcgBpAG8AbgBTAHUAYgBqAGUAYwB0AFMAaQBkACIAOgBuAHUAbABsACwAIgBIAHkAcABlAHIAaQBvAG4ATwBiAHMAZQByAHYAZQByAFMAaQBkACIAOgBuAHUAbABsACwAIgBDAHUAcwB0AG8AbQBlAHIAQQBjAGMAbwB1AG4AdABJAGQAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAwAC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAQQBwAHAAbABpAGMAYQB0AGkAbwBuAE4AYQBtAGUAIgA6AG4AdQBsAGwALAAiAEEAcABwAGwAaQBjAGEAdABpAG8AbgBJAGQAIgA6AG4AdQBsAGwALAAiAFAAcgBvAGYAaQBsAGUASQBkACIAOgAwACwAIgBXAGkAbgBkAG8AdwBTAGkAegBlAEkAbgBNAGkAbgB1AHQAZQBzACIAOgA2ADAALAAiAE0AZQB0AHIAaQBjAE4AYQBtAGUAIgA6ACIAIgAsACIAVABoAHIAZQBzAGgAbwBsAGQAIgA6ADIALgAwACwAIgBBAGwAZQByAHQAVABlAG0AcABsAGEAdABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAE4AYQBtAGUAIgA6ACIAIgAsACIAUgB1AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AIgA6ACIAIgAsACIAUgBlAHMAbwB1AHIAYwBlAEkAZAAiADoAbgB1AGwAbAAsACIAUwB1AGIAcwBjAHIAaQBwAHQAaQBvAG4ASQBkACIAOgBuAHUAbABsACwAIgBBAGcAZwByAGUAZwBhAHQAZQBGAHUAbgBjAHQAaQBvAG4AIgA6ACIAIgAsACIAQwBvAG0AcABhAHIAaQBzAG8AbgBPAHAAZQByAGEAdABvAHIAIgA6ACIAewBcACIAQgBhAHMAZQBsAGkAbgBlAFQAaQBtAGUAcwBwAGEAbgBcACIAOgBcACIAMAAwADoANAAwADoAMAAwAFwAIgAsAFwAIgBJAG4AcwBpAGcAaAB0AHMAUwBlAHIAdgBpAGMAZQBMAGEAZwBcACIAOgBcACIAMAAwADoAMAAwADoAMAAwAFwAIgAsAFwAIgBCAHUAZgBmAGUAcgBUAGkAbQBlAFwAIgA6AFwAIgAwADAAOgAwADEAOgAwADAAXAAiACwAXAAiAEIAbABvAGIAUwB0AG8AcgBhAGcAZQBMAG8AZwBnAGkAbgBnAEUAbgBhAGIAbABlAGQAXAAiADoAZgBhAGwAcwBlACwAXAAiAFUAcwBlAHIAUwB1AHAAcAByAGUAcwBzAGkAbwBuAHMAXAAiADoAbgB1AGwAbAAsAFwAIgBQAHIAbwBmAGkAbABlAEkAZABcACIAOgAwACwAXAAiAEUAbQBhAGkAbABUAHkAcABlAFwAIgA6ADAALABcACIAUgBkAGQARgBhAGkAbAB1AHIAZQBzAFMAcABpAGsAZQBUAGgAcgBlAHMAaABvAGwAZABcACIAOgAzAC4AMAAsAFwAIgBSAGEAdwBQAHIAbwBhAGMAdABpAHYAZQBSAHUAbABlAEMAbwBuAGYAaQBnAFwAIgA6AG4AdQBsAGwAfQAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8AQwB1AHMAdABvAG0AIgA6AGYAYQBsAHMAZQAsACIAQwB1AHMAdABvAG0ARQBtAGEAaQBsAHMARQBuAGMAbwBkAGUAZAAiADoAIgAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8ATwB3AG4AZQByAHMAIgA6AGYAYQBsAHMAZQB9AA=="
+                    },
+                    "operator": "GreaterThan",
+                    "threshold": 2,
+                    "windowSize": "PT1H"
+                },
+                "action": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_deploy_arm_template_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/microsoft.insights/components/deploy-arm-template'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_deploy_arm_template_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "eastus",
+            "tags": {
+                "hidden-link:/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Web/sites/deploy-arm-template": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "ApplicationId": "[parameters('components_deploy_arm_template_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.KeyVault/vaults/SunlabDevTest4770'.",
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "[parameters('vaults_SunlabDevTest4770_name')]",
+            "apiVersion": "2015-06-01",
+            "location": "eastus",
+            "tags": {
+                "hidden-DevTestLabs-LabUId": "b6f6b323-183e-449e-b83e-c6a71f6c7aa1",
+                "CreatedBy": "DevTestLabs"
+            },
+            "scale": null,
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "tenantId": "8d5197e9-41d3-4db0-97a6-8bd4dc2d9a15",
+                "accessPolicies": [
+                    {
+                        "tenantId": "8d5197e9-41d3-4db0-97a6-8bd4dc2d9a15",
+                        "objectId": "52a2202c-08f6-4556-89bb-5c903b6f33b0",
+                        "permissions": {
+                            "secrets": [
+                                "all"
+                            ]
+                        }
+                    }
+                ],
+                "enabledForDeployment": true
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkInterfaces/sunlab-containers-vm_nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sunlab_containers_vm_nic_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "displayName": "NetworkInterface"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "5362dda8-5741-408a-b769-527e4f52a50b",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"b540363b-de19-408d-982a-38b3c52c2e2c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_containers_vm_pubip_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_sunlab_containers_vm_vnet_name'), parameters('subnets_sunlab_containers_vm_subnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "owu0zwe5bgxudf4mzb35zqtaac.bx.internal.cloudapp.net"
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_containers_vm_pubip_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_sunlab_containers_vm_vnet_name'), parameters('subnets_sunlab_containers_vm_subnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkInterfaces/sunlab-vm46'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sunlab_vm46_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "63d114eb-d7be-442f-b95a-271035110eb7",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"f90eeec7-ce73-41d7-9662-0f41e4a55d73\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "172.16.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_vm_ip_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_deloitte_suncor_vnet_name'), parameters('subnets_default_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": []
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_vm_nsg_name'))]"
+                },
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_vm_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_vm_ip_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_deloitte_suncor_vnet_name'), parameters('subnets_default_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_vm_nsg_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_vm_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-containers-vm_nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "22b9d3d1-ce2c-4cf8-8998-a2cbbe9d1c2f",
+                "securityRules": [
+                    {
+                        "name": "HTTP",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "HTTP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "HTTPS",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "HTTPS",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "RDP",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 200,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Docker",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Docker",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "2376",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 300,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"ccef7d68-d9ce-4894-b75b-cc6f4ccc0e9d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-vm-nsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_sunlab_vm_nsg_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "1bfa1255-0c01-4704-8ed0-ca133755688b",
+                "securityRules": [
+                    {
+                        "name": "default-allow-rdp",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"a635203d-147b-479d-b07b-ad45b1ed355c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/publicIPAddresses/sunlab-containers-vm_pubip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_sunlab_containers_vm_pubip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "displayName": "PublicIPAddress"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "665cde61-79cd-4a49-abb6-3f4a709fa926",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "sunlab",
+                    "fqdn": "sunlab.eastus.cloudapp.azure.com"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/publicIPAddresses/sunlab-vm-ip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_sunlab_vm_ip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "e8ce5613-104e-463d-9537-68d913efdd29",
+                "ipAddress": "52.170.237.58",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/deloitte-suncor-vnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_deloitte_suncor_vnet_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "ee17a6f1-cf12-4baf-a1e6-dd59a6b3e2ce",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "172.16.0.0/24"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "default",
+                        "etag": "W/\"150d0c20-30ac-456f-a8b9-c87393250ecd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "172.16.0.0/24"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/DtlSunlab-DevTest'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_DtlSunlab_DevTest_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "hidden-DevTestLabs-LabUId": "b6f6b323-183e-449e-b83e-c6a71f6c7aa1"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "bd71a82e-6d33-4235-8ba5-3421e9af58f3",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/20"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": []
+                },
+                "subnets": [
+                    {
+                        "name": "[concat(parameters('virtualNetworks_DtlSunlab_DevTest_name'),'Subnet')]",
+                        "etag": "W/\"255ba0e3-dd0a-4c96-b7ca-49562e7c0aeb\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/20"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/sunlab-containers-vm_vnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_sunlab_containers_vm_vnet_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "displayName": "VirtualNetwork"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "d8aca975-099f-41af-97cc-c87bfcc26002",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "sunlab-containers-vm_subnet",
+                        "etag": "W/\"2f03cf0f-7dad-4ec8-97e8-e5e07bb3ead8\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Storage/storageAccounts/asunlabdevtest1530'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_asunlabdevtest1530_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "hidden-DevTestLabs-LabUId": "b6f6b323-183e-449e-b83e-c6a71f6c7aa1"
+            },
+            "scale": null,
+            "properties": {
+                "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "services": {
+                        "blob": {
+                            "enabled": true
+                        },
+                        "file": {
+                            "enabled": true
+                        }
+                    }
+                },
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "defaultAction": "Allow",
+                    "ipRules": [],
+                    "virtualNetworkRules": []
+                },
+                "supportsHttpsTrafficOnly": false
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Storage/storageAccounts/deployarmtempla9851'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_deployarmtempla9851_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "services": {
+                        "blob": {
+                            "enabled": true
+                        },
+                        "file": {
+                            "enabled": true
+                        }
+                    }
+                },
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "defaultAction": "Allow",
+                    "ipRules": [],
+                    "virtualNetworkRules": []
+                },
+                "supportsHttpsTrafficOnly": false
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Storage/storageAccounts/i4n4jln6suos4storage'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_i4n4jln6suos4storage_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "displayName": "StorageAccount"
+            },
+            "scale": null,
+            "properties": {
+                "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "services": {
+                        "blob": {
+                            "enabled": true
+                        },
+                        "file": {
+                            "enabled": true
+                        }
+                    }
+                },
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "defaultAction": "Allow",
+                    "ipRules": [],
+                    "virtualNetworkRules": []
+                },
+                "supportsHttpsTrafficOnly": false
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Web/serverfarms/EastUSPlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_EastUSPlan_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "East US",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_EastUSPlan_name')]",
+                "workerTierName": null,
+                "adminSiteName": null,
+                "hostingEnvironmentProfile": null,
+                "perSiteScaling": false,
+                "reserved": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Web/sites/deploy-arm-template'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_deploy_arm_template_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "East US",
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_deploy_arm_template_name'),'.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_deploy_arm_template_name'),'.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_EastUSPlan_name'))]",
+                "reserved": false,
+                "siteConfig": null,
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": null,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 1536,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_EastUSPlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/virtualmachines/sunlab-controller'.",
+            "type": "microsoft.devtestlab/labs/virtualmachines",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('virtualmachines_sunlab_controller_name'))]",
+            "apiVersion": "2016-05-15",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "notes": "Ubuntu Server 17.10",
+                "ownerObjectId": "10011369-7194-419a-a6d2-3fca4496bf2b",
+                "ownerUserPrincipalName": "ksimilien@deloitte.ca",
+                "createdByUserId": "100300009ECC5FE6",
+                "createdByUser": "ksimilien@deloitte.ca",
+                "createdDate": "2017-11-23T16:26:15.9686559+00:00",
+                "osType": "Linux",
+                "size": "Standard_D2s_v3",
+                "userName": "sunlab",
+                "disallowPublicIpAddress": true,
+                "artifactDeploymentStatus": {
+                    "artifactsApplied": 0,
+                    "totalArtifacts": 0
+                },
+                "galleryImageReference": {
+                    "offer": "UbuntuServer",
+                    "publisher": "Canonical",
+                    "sku": "17.10",
+                    "osType": "Linux",
+                    "version": "latest"
+                },
+                "networkInterface": {},
+                "allowClaim": false,
+                "storageType": "Premium",
+                "virtualMachineCreationSource": "FromGalleryImage",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "6744d9c7-102e-47e8-8fb6-cdc42058ac42"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/virtualmachines/sunlab-win-01'.",
+            "type": "microsoft.devtestlab/labs/virtualmachines",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('virtualmachines_sunlab_win_01_name'))]",
+            "apiVersion": "2016-05-15",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "notes": "Windows Server 2016 Datacenter - with Containers",
+                "ownerObjectId": "10011369-7194-419a-a6d2-3fca4496bf2b",
+                "ownerUserPrincipalName": "ksimilien@deloitte.ca",
+                "createdByUserId": "100300009ECC5FE6",
+                "createdByUser": "ksimilien@deloitte.ca",
+                "createdDate": "2017-11-23T16:35:38.0820053+00:00",
+                "osType": "Windows",
+                "size": "Standard_D2s_v3",
+                "userName": "sunlab",
+                "disallowPublicIpAddress": true,
+                "artifactDeploymentStatus": {
+                    "deploymentStatus": "Succeeded",
+                    "artifactsApplied": 9,
+                    "totalArtifacts": 9
+                },
+                "galleryImageReference": {
+                    "offer": "WindowsServer",
+                    "publisher": "MicrosoftWindowsServer",
+                    "sku": "2016-Datacenter-with-Containers",
+                    "osType": "Windows",
+                    "version": "latest"
+                },
+                "networkInterface": {},
+                "allowClaim": false,
+                "storageType": "Premium",
+                "virtualMachineCreationSource": "FromGalleryImage",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "0fb55702-ec39-4d75-bba0-fefb6250e0d2"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/virtualmachines/sunlab-db-01'.",
+            "type": "microsoft.devtestlab/labs/virtualmachines",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('virtualmachines_sunlab_db_01_name'))]",
+            "apiVersion": "2016-05-15",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "notes": "Free SQL Server License: SQL Server 2017 Developer on Windows Server 2016",
+                "ownerObjectId": "",
+                "ownerUserPrincipalName": "",
+                "createdByUserId": "00037FFEACEC3A19",
+                "createdByUser": "simkessy@gmail.com",
+                "createdDate": "2017-11-24T17:48:05.9994005+00:00",
+                "osType": "Windows",
+                "size": "Standard_D2s_v3",
+                "userName": "sunlab",
+                "disallowPublicIpAddress": true,
+                "artifactDeploymentStatus": {
+                    "deploymentStatus": "Succeeded",
+                    "artifactsApplied": 6,
+                    "totalArtifacts": 6
+                },
+                "galleryImageReference": {
+                    "offer": "SQL2017-WS2016",
+                    "publisher": "MicrosoftSQLServer",
+                    "sku": "SQLDEV",
+                    "osType": "Windows",
+                    "version": "latest"
+                },
+                "networkInterface": {},
+                "allowClaim": true,
+                "storageType": "Premium",
+                "virtualMachineCreationSource": "FromGalleryImage",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "e1840999-4042-4d65-a94d-43e3241e8d0c"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/artifactsources/public repo'.",
+            "type": "microsoft.devtestlab/labs/artifactsources",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('artifactsources_public_repo_name'))]",
+            "apiVersion": "2016-05-15",
+            "scale": null,
+            "properties": {
+                "displayName": "[concat(parameters('artifactsources_public_repo_name'),'Public Repo', parameters('artifactsources_public_repo_name'))]",
+                "uri": "https://github.com/Azure/azure-devtestlab.git",
+                "sourceType": "GitHub",
+                "folderPath": "/Artifacts",
+                "branchRef": "master",
+                "status": "Enabled",
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "00000000-0000-0000-0000-000000000000"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/users/ed66b375-e37c-4065-ba98-2c32a6a5493f'.",
+            "type": "microsoft.devtestlab/labs/users",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('users_ed66b375_e37c_4065_ba98_2c32a6a5493f_name'))]",
+            "apiVersion": "2016-05-15",
+            "scale": null,
+            "properties": {
+                "identity": {
+                    "principalName": "live.com#simkessy@gmail.com",
+                    "principalId": "00037FFEACEC3A19",
+                    "tenantId": "8d5197e9-41d3-4db0-97a6-8bd4dc2d9a15",
+                    "objectId": "[parameters('users_ed66b375_e37c_4065_ba98_2c32a6a5493f_name')]",
+                    "appId": "1a14be2a-e903-4cec-99cf-b2e209259a0f"
+                },
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "648e1194-7d23-4e80-bf1f-f8061ae1142c"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/users/10011369-7194-419a-a6d2-3fca4496bf2b'.",
+            "type": "microsoft.devtestlab/labs/users",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('users_10011369_7194_419a_a6d2_3fca4496bf2b_name'))]",
+            "apiVersion": "2016-05-15",
+            "scale": null,
+            "properties": {
+                "identity": {
+                    "principalName": "ksimilien@deloitte.ca",
+                    "principalId": "100300009ECC5FE6",
+                    "tenantId": "8d5197e9-41d3-4db0-97a6-8bd4dc2d9a15",
+                    "objectId": "[parameters('users_10011369_7194_419a_a6d2_3fca4496bf2b_name')]",
+                    "appId": "1a14be2a-e903-4cec-99cf-b2e209259a0f"
+                },
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "b9008aaf-6f34-4e82-a0d9-f9d1dba8d4d8"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourcegroups/deloitte-suncor/providers/microsoft.devtestlab/labs/sunlab-devtest/virtualnetworks/dtlsunlab-devtest'.",
+            "type": "microsoft.devtestlab/labs/virtualnetworks",
+            "name": "[concat(parameters('labs_sunlab_devtest_name'), '/', parameters('virtualnetworks_dtlsunlab_devtest_name_1'))]",
+            "apiVersion": "2016-05-15",
+            "scale": null,
+            "properties": {
+                "allowedSubnets": [
+                    {
+                        "resourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_DtlSunlab_DevTest_name'), parameters('subnets_DtlSunlab_DevTestSubnet_name'))]",
+                        "labSubnetName": "[concat(parameters('virtualnetworks_dtlsunlab_devtest_name_1'),'DtlSunlab-DevTestSubnet')]",
+                        "allowPublicIp": "Allow"
+                    }
+                ],
+                "externalProviderResourceId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_DtlSunlab_DevTest_name'))]",
+                "subnetOverrides": [
+                    {
+                        "resourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_DtlSunlab_DevTest_name'), parameters('subnets_DtlSunlab_DevTestSubnet_name'))]",
+                        "labSubnetName": "[concat(parameters('virtualnetworks_dtlsunlab_devtest_name_1'),'DtlSunlab-DevTestSubnet')]",
+                        "useInVmCreationPermission": "Allow",
+                        "usePublicIpAddressPermission": "Allow",
+                        "sharedPublicIpAddressConfiguration": {
+                            "allowedPorts": [
+                                {
+                                    "transportProtocol": "Tcp",
+                                    "backendPort": 3389
+                                },
+                                {
+                                    "transportProtocol": "Tcp",
+                                    "backendPort": 22
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "provisioningState": "Succeeded",
+                "uniqueIdentifier": "a721418a-644b-4007-bd8d-4006dd174209"
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.devtestlab/labs', parameters('labs_sunlab_devtest_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_DtlSunlab_DevTest_name'), parameters('subnets_DtlSunlab_DevTestSubnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_DtlSunlab_DevTest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-containers-vm_nsg/securityRules/HTTP'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'), '/', parameters('securityRules_HTTP_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "[parameters('securityRules_HTTP_name')]",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "80",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-containers-vm_nsg/securityRules/HTTPS'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'), '/', parameters('securityRules_HTTPS_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "[parameters('securityRules_HTTPS_name')]",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 110,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-containers-vm_nsg/securityRules/RDP'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'), '/', parameters('securityRules_RDP_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "[parameters('securityRules_RDP_name')]",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 200,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-containers-vm_nsg/securityRules/Docker'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'), '/', parameters('securityRules_Docker_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "[parameters('securityRules_Docker_name')]",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "2376",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 300,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/networkSecurityGroups/sunlab-vm-nsg/securityRules/default-allow-rdp'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_sunlab_vm_nsg_name'), '/', parameters('securityRules_default_allow_rdp_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1000,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/deloitte-suncor-vnet/subnets/default'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_deloitte_suncor_vnet_name'), '/', parameters('subnets_default_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "172.16.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_deloitte_suncor_vnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/DtlSunlab-DevTest/subnets/DtlSunlab-DevTestSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_DtlSunlab_DevTest_name'), '/', parameters('subnets_DtlSunlab_DevTestSubnet_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/20"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_DtlSunlab_DevTest_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/sunlab-containers-vm_vnet/subnets/sunlab-containers-vm_subnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_sunlab_containers_vm_vnet_name'), '/', parameters('subnets_sunlab_containers_vm_subnet_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sunlab_containers_vm_vnet_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sunlab_containers_vm_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Web/sites/deploy-arm-template/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('sites_deploy_arm_template_name'), '/', parameters('config_web_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "East US",
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2012",
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$deploy-arm-template",
+                "publishingPassword": null,
+                "appSettings": null,
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": {
+                    "triggers": null,
+                    "actions": null
+                },
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": {
+                    "allowedOrigins": [
+                        "https://functions.azure.com",
+                        "https://functions-staging.azure.com",
+                        "https://functions-next.azure.com",
+                        "https://portal.azure.com",
+                        "https://web1.appsvcux.ext.azure.com",
+                        "https://ms.portal.azure.com"
+                    ]
+                },
+                "push": null,
+                "apiDefinition": {
+                    "url": "[concat('https://deploy-arm-template.azure', parameters('config_web_name'),'sites.net/admin/host/swagger?code=RbnBkQ24rj1xXOxtOQrQFtKGWzje/ujLC7d8md9q4W8cSnSxyCldKg==')]"
+                },
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_deploy_arm_template_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Web/sites/deploy-arm-template/hostNameBindings/deploy-arm-template.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_deploy_arm_template_name'), '/', parameters('hostNameBindings_deploy_arm_template.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "East US",
+            "scale": null,
+            "properties": {
+                "siteName": "deploy-arm-template",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_deploy_arm_template_name'))]"
+            ]
+        }
+    ]
+}
