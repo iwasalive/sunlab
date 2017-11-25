@@ -9,7 +9,8 @@ function createResourceGroup {
         New-AzureRmResourceGroup `
             -Name $name `
             -Location $location `
-            -Tag @{ DateCreated = get-date; Env = "Test" }
+            -Tag @{ DateCreated = get-date; Env = "Test" } `
+            -Confirm:$false -Force
     }
     catch {
         Write-Host "Failed to create resource group $name" -ForegroundColor Red -BackgroundColor Yellow
@@ -26,14 +27,22 @@ function deployTemplate {
         [Parameter(mandatory)] [String] $ResourceGroup,
         [Parameter(mandatory)] [String] $TemplateUri,
         [Parameter(mandatory)] [String] $TemplateParamFile,
-        [Parameter(mandatory)] [String] $Version
+        [Parameter(mandatory)] [switch] $Test
     )
     try {
-        New-AzureRmResourceGroupDeployment `
-            -ResourceGroupName $ResourceGroup `
-            -TemplateFile $TemplateUri `
-            -TemplateParameterFile $TemplateParamFile 
-            # -TemplateVersion $Version 
+
+        $AzureParams = @{ 
+            ResourceGroupName = $ResourceGroup
+            TemplateFile = $TemplateUri
+            TemplateParameterFile = $TemplateParamFile 
+        }
+
+        If ($Test) {
+            Test-AzureRmResourceGroupDeployment @AzureParams 
+        }
+        Else {
+            New-AzureRmResourceGroupDeployment @AzurParams
+        }
 
         Write-Host "Deployed successful" -ForegroundColor Green
     }
@@ -54,16 +63,20 @@ function createLab() {
         [Parameter(mandatory)] [String] $Location,
         [Parameter(mandatory)] [String] $TemplateUri,
         [Parameter(mandatory)] [String] $TemplateParamFile,
-        [Parameter(mandatory)] [String] $Version
+        [Parameter(mandatory)] [String] $Version,
+        [Parameter(mandatory)] [Switch] $Test
     )
 
     createResourceGroup -name $ResourceGroup -Location $location
 
-    deployTemplate `
-        -ResourceGroup $ResourceGroup `
-        -TemplateUri $TemplateUri `
-        -TemplateParamFile $TemplateParamFile `
-        -Version $Version
+    $DeployParams = @{
+        ResourceGroup = $ResourceGroup
+        TemplateUri = $TemplateUri
+        TemplateParamFile = $TemplateParamFile
+        Test = $Test
+    }
+
+    deployTemplate @DeployParams
 }
 
 
