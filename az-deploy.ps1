@@ -26,22 +26,30 @@ function deployTemplate {
     Param (
         [Parameter(mandatory)] [String] $ResourceGroup,
         [Parameter(mandatory)] [String] $TemplateUri,
-        [Parameter(mandatory)] [String] $TemplateParamFile,
+        [Parameter(mandatory)] [String] $EnvPrefixName,
+        [Parameter(mandatory)] [String] $Username,
+        [Parameter(mandatory)] [Security.SecureString] $Password,
+        # [Parameter()] [String] $TemplateParamUri,
         [Parameter(mandatory)] [switch] $Test
     )
     try {
 
         $AzureParams = @{ 
             ResourceGroupName = $ResourceGroup
-            TemplateFile = $TemplateUri
-            TemplateParameterFile = $TemplateParamFile 
+            TemplateUri = $TemplateUri
+            # TemplateParameterUri = $TemplateParamUri 
+            Mode = "Complete"
+            envPrefixName = $EnvPrefixName
+            username = $Username
+            password = $Password
+            Force = $true
         }
 
         If ($Test) {
-            Test-AzureRmResourceGroupDeployment @AzureParams 
+            Test-AzureRmResourceGroupDeployment @AzureParams -Verbose
         }
         Else {
-            New-AzureRmResourceGroupDeployment @AzurParams
+            New-AzureRmResourceGroupDeployment @AzureParams -Verbose
         }
 
         Write-Host "Deployed successful" -ForegroundColor Green
@@ -62,9 +70,12 @@ function createLab() {
         [Parameter(mandatory)] [String] $ResourceGroup,
         [Parameter(mandatory)] [String] $Location,
         [Parameter(mandatory)] [String] $TemplateUri,
-        [Parameter(mandatory)] [String] $TemplateParamFile,
+        [Parameter()] [String] $TemplateParamUri,
         [Parameter(mandatory)] [String] $Version,
-        [Parameter(mandatory)] [Switch] $Test
+        [Parameter(mandatory)] [Switch] $Test,
+        [Parameter(mandatory)] [String] $EnvPrefixName,
+        [Parameter(mandatory)] [String] $Username,
+        [Parameter(mandatory)] [String] $Password
     )
 
     createResourceGroup -name $ResourceGroup -Location $location
@@ -72,8 +83,11 @@ function createLab() {
     $DeployParams = @{
         ResourceGroup = $ResourceGroup
         TemplateUri = $TemplateUri
-        TemplateParamFile = $TemplateParamFile
+        # TemplateParamUri = $TemplateParamUri
         Test = $Test
+        EnvPrefixName = $EnvPrefixName
+        Username = $Username
+        Password = $Password | ConvertTo-SecureString -AsPlainText -Force
     }
 
     deployTemplate @DeployParams

@@ -4,167 +4,167 @@
     "parameters": {
         "registries_sunlabRegistry_name": {
             "defaultValue": null,
-            "type": "SecureString"
+            "type": "securestring"
         },
         "registries_sunlabRegistry_accessKey": {
             "defaultValue": null,
-            "type": "SecureString"
+            "type": "securestring"
         },
         "serverfarms_EastUSPlan_name": {
             "defaultValue": "EastUSPlan",
-            "type": "String"
+            "type": "string"
         },
         "sites_deploy_arm_template_name": {
             "defaultValue": "deploy-arm-template",
-            "type": "String"
+            "type": "string"
         },
         "labs_sunlab_devtest_name": {
             "defaultValue": "sunlab-devtest",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_sunlab_vm_name": {
             "defaultValue": "sunlab-vm",
-            "type": "String"
+            "type": "string"
         },
         "vaults_SunlabDevTest4770_name": {
             "defaultValue": "SunlabDevTest4770",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_sunlab_vm46_name": {
             "defaultValue": "sunlab-vm46",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_sunlab_vm_ip_name": {
             "defaultValue": "sunlab-vm-ip",
-            "type": "String"
+            "type": "string"
         },
         "components_deploy_arm_template_name": {
             "defaultValue": "deploy-arm-template",
-            "type": "String"
+            "type": "string"
         },
         "config_web_name": {
             "defaultValue": "web",
-            "type": "String"
+            "type": "string"
         },
         "virtualNetworks_DtlSunlab_DevTest_name": {
             "defaultValue": "DtlSunlab-DevTest",
-            "type": "String"
+            "type": "string"
         },
         "storageAccounts_asunlabdevtest1530_name": {
             "defaultValue": "asunlabdevtest1530",
-            "type": "String"
+            "type": "string"
         },
         "registries_sunlabRegistry_name_1": {
             "defaultValue": "sunlabRegistry",
-            "type": "String"
+            "type": "string"
         },
         "networkSecurityGroups_sunlab_vm_nsg_name": {
             "defaultValue": "sunlab-vm-nsg",
-            "type": "String"
+            "type": "string"
         },
         "storageAccounts_deployarmtempla9851_name": {
             "defaultValue": "deployarmtempla9851",
-            "type": "String"
+            "type": "string"
         },
         "virtualNetworks_deloitte_suncor_vnet_name": {
             "defaultValue": "deloitte-suncor-vnet",
-            "type": "String"
+            "type": "string"
         },
         "storageAccounts_i4n4jln6suos4storage_name": {
             "defaultValue": "i4n4jln6suos4storage",
-            "type": "String"
+            "type": "string"
         },
         "schedules_shutdown_computevm_sunlab_vm_name": {
             "defaultValue": "shutdown-computevm-sunlab-vm",
-            "type": "String"
+            "type": "string"
         },
         "virtualNetworks_sunlab_containers_vm_vnet_name": {
             "defaultValue": "sunlab-containers-vm_vnet",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_sunlab_containers_vm_nic_name": {
             "defaultValue": "sunlab-containers-vm_nic",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_sunlab_containers_vm_pubip_name": {
             "defaultValue": "sunlab-containers-vm_pubip",
-            "type": "String"
+            "type": "string"
         },
         "networkSecurityGroups_sunlab_containers_vm_nsg_name": {
             "defaultValue": "sunlab-containers-vm_nsg",
-            "type": "String"
+            "type": "string"
         },
         "artifactsources_public_repo_name": {
             "defaultValue": "public repo",
-            "type": "String"
+            "type": "string"
         },
         "alertrules_Failure_Anomalies___deploy_arm_template_name": {
             "defaultValue": "Failure Anomalies - deploy-arm-template",
-            "type": "String"
+            "type": "string"
         },
         "virtualmachines_sunlab_db_01_name": {
             "defaultValue": "sunlab-db-01",
-            "type": "String"
+            "type": "string"
         },
         "virtualmachines_sunlab_win_01_name": {
             "defaultValue": "sunlab-win-01",
-            "type": "String"
+            "type": "string"
         },
         "subnets_default_name": {
             "defaultValue": "default",
-            "type": "String"
+            "type": "string"
         },
         "virtualmachines_sunlab_controller_name": {
             "defaultValue": "sunlab-controller",
-            "type": "String"
+            "type": "string"
         },
         "virtualnetworks_dtlsunlab_devtest_name_1": {
             "defaultValue": "dtlsunlab-devtest",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_RDP_name": {
             "defaultValue": "RDP",
-            "type": "String"
+            "type": "string"
         },
         "users_ed66b375_e37c_4065_ba98_2c32a6a5493f_name": {
             "defaultValue": "ed66b375-e37c-4065-ba98-2c32a6a5493f",
-            "type": "String"
+            "type": "string"
         },
         "users_10011369_7194_419a_a6d2_3fca4496bf2b_name": {
             "defaultValue": "10011369-7194-419a-a6d2-3fca4496bf2b",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_HTTP_name": {
             "defaultValue": "HTTP",
-            "type": "String"
+            "type": "string"
         },
         "subnets_DtlSunlab_DevTestSubnet_name": {
             "defaultValue": "DtlSunlab-DevTestSubnet",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_HTTPS_name": {
             "defaultValue": "HTTPS",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_Docker_name": {
             "defaultValue": "Docker",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_default_allow_rdp_name": {
             "defaultValue": "default-allow-rdp",
-            "type": "String"
+            "type": "string"
         },
         "hostNameBindings_deploy_arm_template.azurewebsites.net_name": {
             "defaultValue": "deploy-arm-template.azurewebsites.net",
-            "type": "String"
+            "type": "string"
         },
         "subnets_sunlab_containers_vm_subnet_name": {
             "defaultValue": "sunlab-containers-vm_subnet",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_sunlab_vm_id": {
             "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/DELOITTE-SUNCOR/providers/Microsoft.Compute/disks/sunlab-vm_OsDisk_1_93d65bdc7a9849389897608f17289478",
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},
