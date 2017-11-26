@@ -9,12 +9,22 @@ function Login {
     $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $appId, $SecurePassword
     
     # Login to Azure Portal
-    Login-AzureRmAccount -Credential $cred -TenantId $tenantId -SubscriptionId $subscriptionId -ServicePrincipal
+    try {
+        Login-AzureRmAccount -Credential $cred -TenantId $tenantId -SubscriptionId $subscriptionId -ServicePrincipal
+    
+        Write-Host "Logged in succeeded `n" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "Login failed `n" -ForegroundColor Red
+
+        $ErrorMessage = $_.Exception.Message
+
+        Write-Host "$ErrorMessage `n" -ForegroundColor Red -BackgroundColor Yellow
+    }
     
     # Test
     Get-AzureRmSubscription
     
-    Write-Host "Logged in succeeded `n" -ForegroundColor Green
 }
 
 
