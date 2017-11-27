@@ -2,6 +2,27 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "username": {
+            "type": "string",
+            "metadata": {
+                "description": "SQL IaaS VM local administrator username"
+            }
+        },
+        "password": {
+            "type": "securestring",
+            "metadata": {
+                "description": "SQL IaaS VM local administrator password"
+            }
+        },
+        "envPrefixName": {
+            "type": "string",
+            "metadata": {
+                "description": "Prefix for the environment (2-5 characters)"
+            },
+            "defaultValue": "dev1",
+            "minLength": 3,
+            "maxLength": 8
+        },
         "virtualMachines_sunlab_db_01_name": {
             "defaultValue": "sunlab-db-01",
             "type": "string"
@@ -18,52 +39,36 @@
             "defaultValue": "sunlab-win-01",
             "type": "string"
         },
-        "virtualMachines_sunlab_controller_name": {
-            "defaultValue": "sunlab-controller",
+        "loadBalancers_sunlab_name": {
+            "defaultValue": "sunlab-devtest",
             "type": "string"
         },
-        "networkInterfaces_sunlab_controller_name": {
-            "defaultValue": "sunlab-controller",
+        "availabilitySets_sunlab_name": {
+            "defaultValue": "sunlab-devtest",
             "type": "string"
         },
-        "loadBalancers_sunlab_devtest1441158750000_name": {
-            "defaultValue": "sunlab-devtest1441158750000",
-            "type": "string"
-        },
-        "availabilitySets_sunlab_devtest1441158750000_name": {
-            "defaultValue": "sunlab-devtest1441158750000",
-            "type": "string"
-        },
-        "publicIPAddresses_sunlab_devtest1441158750000_name": {
-            "defaultValue": "sunlab-devtest1441158750000",
-            "type": "string"
-        },
-        "virtualMachines_sunlab_controller_id": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/SUNLAB-DEVTEST1441158750000/providers/Microsoft.Compute/disks/sunlab-controller",
+        "publicIPAddresses_sunlab_name": {
+            "defaultValue": "sunlab-devtest",
             "type": "string"
         },
         "virtualMachines_sunlab_db_01_id": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/SUNLAB-DEVTEST1441158750000/providers/Microsoft.Compute/disks/sunlab-db-01",
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/SUNLAB-devtest/providers/Microsoft.Compute/disks/sunlab-db-01",
             "type": "string"
         },
         "virtualMachines_sunlab_win_01_id": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/SUNLAB-DEVTEST1441158750000/providers/Microsoft.Compute/disks/sunlab-win-01",
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/SUNLAB-devtest/providers/Microsoft.Compute/disks/sunlab-win-01",
             "type": "string"
         },
-        "loadBalancers_sunlab_devtest1441158750000_id": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/loadBalancers/sunlab-devtest1441158750000/frontendIPConfigurations/FrontendPool1",
+        "loadBalancers_sunlab_id": {
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/loadBalancers/sunlab-devtest/frontendIPConfigurations/FrontendPool1",
             "type": "string"
         },
-        "loadBalancers_sunlab_devtest1441158750000_id_1": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/loadBalancers/sunlab-devtest1441158750000/frontendIPConfigurations/FrontendPool1",
+        "loadBalancers_sunlab_id_1": {
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/loadBalancers/sunlab-devtest/frontendIPConfigurations/FrontendPool1",
             "type": "string"
         },
-        "loadBalancers_sunlab_devtest1441158750000_id_2": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/loadBalancers/sunlab-devtest1441158750000/frontendIPConfigurations/FrontendPool1",
-            "type": "string"
-        },
-        "networkInterfaces_sunlab_controller_id": {
-            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/deloitte-suncor/providers/Microsoft.Network/virtualNetworks/DtlSunlab-DevTest/subnets/DtlSunlab-DevTestSubnet",
+        "loadBalancers_sunlab_id_2": {
+            "defaultValue": "/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/loadBalancers/sunlab-devtest/frontendIPConfigurations/FrontendPool1",
             "type": "string"
         },
         "networkInterfaces_sunlab_db_01_id": {
@@ -75,15 +80,29 @@
             "type": "string"
         }
     },
-    "variables": {},
-    "resources": [
-        {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Compute/availabilitySets/sunlab-devtest1441158750000'.",
+    "variables": {
+        "virtualMachines_sunlab_db_01_name": "[concat(parameters('envPrefixName'), '-', parameters('virtualMachines_sunlab_db_01_name')]",
+        "virtualMachines_sunlab_win_01_name": "[concat(parameters('envPrefixName'), '-', parameters('virtualMachines_sunlab_win_01_name')]",
+        "networkInterfaces_sunlab_db_01_name": "[concat(parameters('envPrefixName'), '-', parameters('networkInterfaces_sunlab_db_01_name')]",
+        "networkInterfaces_sunlab_win_01_name": "[concat(parameters('envPrefixName'), '-', parameters('networkInterfaces_sunlab_win_01_name')]",
+        "loadBalancers_sunlab_name": "[concat(parameters('envPrefixName'), '-', parameters('loadBalancers_sunlab_name')]",
+        "availabilitySets_sunlab_name": "[concat(parameters('envPrefixName'), '-', parameters('availabilitySets_sunlab_name')]",
+        "publicIPAddresses_sunlab_name": "[concat(parameters('envPrefixName'), '-', parameters('publicIPAddresses_sunlab_name')]",
+        "virtualMachines_sunlab_db_01_id": "[concat(parameters('envPrefixName'), '-', parameters('virtualMachines_sunlab_db_01_id')]",
+        "virtualMachines_sunlab_win_01_id": "[concat(parameters('envPrefixName'), '-', parameters('virtualMachines_sunlab_win_01_id')]",
+        "loadBalancers_sunlab_id": "[concat(parameters('envPrefixName'), '-', parameters('loadBalancers_sunlab_id')]",
+        "loadBalancers_sunlab_id_1": "[concat(parameters('envPrefixName'), '-', parameters('loadBalancers_sunlab_id_1')]",
+        "loadBalancers_sunlab_id_2": "[concat(parameters('envPrefixName'), '-', parameters('loadBalancers_sunlab_id_2')]",
+        "networkInterfaces_sunlab_db_01_id": "[concat(parameters('envPrefixName'), '-', parameters('networkInterfaces_sunlab_db_01_id')]",
+        "networkInterfaces_sunlab_win_01_id": "[concat(parameters('envPrefixName'), '-', parameters('networkInterfaces_sunlab_win_01_id')]"
+    },
+    "resources": [{
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Compute/availabilitySets/sunlab-devtest'.",
             "type": "Microsoft.Compute/availabilitySets",
             "sku": {
                 "name": "Aligned"
             },
-            "name": "[parameters('availabilitySets_sunlab_devtest1441158750000_name')]",
+            "name": "[variables('availabilitySets_sunlab_name')]",
             "apiVersion": "2017-03-30",
             "location": "eastus",
             "tags": {
@@ -93,28 +112,23 @@
             "properties": {
                 "platformUpdateDomainCount": 5,
                 "platformFaultDomainCount": 1,
-                "virtualMachines": [
-                    {
-                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_controller_name'))]"
+                "virtualMachines": [{
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_db_01_name'))]"
                     },
                     {
-                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_db_01_name'))]"
-                    },
-                    {
-                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_win_01_name'))]"
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_win_01_name'))]"
                     }
                 ]
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_controller_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_db_01_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_win_01_name'))]"
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_db_01_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_win_01_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Compute/virtualMachines/sunlab-db-01'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Compute/virtualMachines/sunlab-db-01'.",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[parameters('virtualMachines_sunlab_db_01_name')]",
+            "name": "[variables('virtualMachines_sunlab_db_01_name')]",
             "apiVersion": "2017-03-30",
             "location": "eastus",
             "tags": {
@@ -124,7 +138,7 @@
             "scale": null,
             "properties": {
                 "availabilitySet": {
-                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sunlab_devtest1441158750000_name'))]"
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_sunlab_name'))]"
                 },
                 "hardwareProfile": {
                     "vmSize": "Standard_D2s_v3"
@@ -138,18 +152,19 @@
                     },
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[parameters('virtualMachines_sunlab_db_01_name')]",
+                        "name": "[variables('virtualMachines_sunlab_db_01_name')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
-                            "id": "[parameters('virtualMachines_sunlab_db_01_id')]"
+                            "id": "[variables('virtualMachines_sunlab_db_01_id')]"
                         }
                     },
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[parameters('virtualMachines_sunlab_db_01_name')]",
-                    "adminUsername": "sunlab",
+                    "computerName": "[variables('virtualMachines_sunlab_db_01_name')]",
+                    "adminUsername": "[parameters('username')]",
+                    "adminPassword": "[parameters('password')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -157,11 +172,9 @@
                     "secrets": []
                 },
                 "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_db_01_name'))]"
-                        }
-                    ]
+                    "networkInterfaces": [{
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaces_sunlab_db_01_name'))]"
+                    }]
                 },
                 "settings": {
                     "fileUris": [
@@ -171,14 +184,14 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sunlab_devtest1441158750000_name'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_db_01_name'))]"
+                "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_sunlab_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaces_sunlab_db_01_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Compute/virtualMachines/sunlab-win-01'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Compute/virtualMachines/sunlab-win-01'.",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[parameters('virtualMachines_sunlab_win_01_name')]",
+            "name": "[variables('virtualMachines_sunlab_win_01_name')]",
             "apiVersion": "2017-03-30",
             "location": "eastus",
             "tags": {
@@ -188,7 +201,7 @@
             "scale": null,
             "properties": {
                 "availabilitySet": {
-                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sunlab_devtest1441158750000_name'))]"
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_sunlab_name'))]"
                 },
                 "hardwareProfile": {
                     "vmSize": "Standard_D2s_v3"
@@ -202,20 +215,21 @@
                     },
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[parameters('virtualMachines_sunlab_win_01_name')]",
+                        "name": "[variables('virtualMachines_sunlab_win_01_name')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
                             "storageAccountType": "Premium_LRS",
-                            "id": "[parameters('virtualMachines_sunlab_win_01_id')]"
+                            "id": "[variables('virtualMachines_sunlab_win_01_id')]"
                         },
                         "diskSizeGB": 128
                     },
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[parameters('virtualMachines_sunlab_win_01_name')]",
-                    "adminUsername": "sunlab",
+                    "computerName": "[variables('virtualMachines_sunlab_win_01_name')]",
+                    "adminUsername": "[parameters('username')]",
+                    "adminPassword": "[parameters('password')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -223,11 +237,9 @@
                     "secrets": []
                 },
                 "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_win_01_name'))]"
-                        }
-                    ]
+                    "networkInterfaces": [{
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaces_sunlab_win_01_name'))]"
+                    }]
                 },
                 "settings": {
                     "fileUris": [
@@ -237,14 +249,14 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sunlab_devtest1441158750000_name'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sunlab_win_01_name'))]"
+                "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_sunlab_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaces_sunlab_win_01_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/loadBalancers/sunlab-devtest1441158750000'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/loadBalancers/sunlab-devtest'.",
             "type": "Microsoft.Network/loadBalancers",
-            "name": "[parameters('loadBalancers_sunlab_devtest1441158750000_name')]",
+            "name": "[variables('loadBalancers_sunlab_name')]",
             "apiVersion": "2017-06-01",
             "location": "eastus",
             "tags": {
@@ -254,38 +266,33 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "resourceGuid": "ad319330-0d6f-439b-965c-022c32fb9742",
-                "frontendIPConfigurations": [
-                    {
-                        "name": "FrontendPool1",
-                        "etag": "W/\"cc3e2ee5-cd7b-4b76-93d2-ab4356772ef0\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_devtest1441158750000_name'))]"
-                            }
+                "frontendIPConfigurations": [{
+                    "name": "FrontendPool1",
+                    "etag": "W/\"cc3e2ee5-cd7b-4b76-93d2-ab4356772ef0\"",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "privateIPAllocationMethod": "Dynamic",
+                        "publicIPAddress": {
+                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_sunlab_name'))]"
                         }
                     }
-                ],
-                "backendAddressPools": [
-                    {
-                        "name": "BackendPool1",
-                        "etag": "W/\"cc3e2ee5-cd7b-4b76-93d2-ab4356772ef0\"",
-                        "properties": {
-                            "provisioningState": "Succeeded"
-                        }
+                }],
+                "backendAddressPools": [{
+                    "name": "BackendPool1",
+                    "etag": "W/\"cc3e2ee5-cd7b-4b76-93d2-ab4356772ef0\"",
+                    "properties": {
+                        "provisioningState": "Succeeded"
                     }
-                ],
+                }],
                 "loadBalancingRules": [],
                 "probes": [],
-                "inboundNatRules": [
-                    {
+                "inboundNatRules": [{
                         "name": "Tcp226744d9c7-102e-47e8-8fb6-cdc42058ac42",
                         "etag": "W/\"cc3e2ee5-cd7b-4b76-93d2-ab4356772ef0\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "frontendIPConfiguration": {
-                                "id": "[parameters('loadBalancers_sunlab_devtest1441158750000_id')]"
+                                "id": "[variables('loadBalancers_sunlab_id')]"
                             },
                             "frontendPort": 56583,
                             "backendPort": 22,
@@ -300,7 +307,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "frontendIPConfiguration": {
-                                "id": "[parameters('loadBalancers_sunlab_devtest1441158750000_id_1')]"
+                                "id": "[variables('loadBalancers_sunlab_id_1')]"
                             },
                             "frontendPort": 60542,
                             "backendPort": 3389,
@@ -315,7 +322,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "frontendIPConfiguration": {
-                                "id": "[parameters('loadBalancers_sunlab_devtest1441158750000_id_2')]"
+                                "id": "[variables('loadBalancers_sunlab_id_2')]"
                             },
                             "frontendPort": 49613,
                             "backendPort": 3389,
@@ -329,71 +336,13 @@
                 "inboundNatPools": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_sunlab_devtest1441158750000_name'))]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_sunlab_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/networkInterfaces/sunlab-controller'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/networkInterfaces/sunlab-db-01'.",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_sunlab_controller_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "eastus",
-            "tags": {
-                "hidden-DevTestLabs-LabUId": "b6f6b323-183e-449e-b83e-c6a71f6c7aa1",
-                "hidden-DevTestLabs-LogicalResourceUId": "6744d9c7-102e-47e8-8fb6-cdc42058ac42"
-            },
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "eab065fc-2663-4fae-9654-c006d841e4d0",
-                "ipConfigurations": [
-                    {
-                        "name": "NicIPConfigName1",
-                        "etag": "W/\"3990793b-1dbf-437a-b475-8965fddd3985\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "10.0.0.4",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "subnet": {
-                                "id": "[parameters('networkInterfaces_sunlab_controller_id')]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4",
-                            "loadBalancerBackendAddressPools": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/backendAddressPools/BackendPool1')]"
-                                }
-                            ],
-                            "loadBalancerInboundNatRules": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/inboundNatRules/Tcp226744d9c7-102e-47e8-8fb6-cdc42058ac42')]"
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [],
-                    "appliedDnsServers": [],
-                    "internalDomainNameSuffix": "f0uhdpjtnu0ufc3fgqq4tl0y4d.bx.internal.cloudapp.net"
-                },
-                "macAddress": "00-0D-3A-13-A2-A0",
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": false,
-                "primary": true,
-                "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_controller_name'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_controller_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/networkInterfaces/sunlab-db-01'.",
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_sunlab_db_01_name')]",
+            "name": "[variables('networkInterfaces_sunlab_db_01_name')]",
             "apiVersion": "2017-06-01",
             "location": "eastus",
             "tags": {
@@ -404,32 +353,26 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "resourceGuid": "36a1e8a5-fc2c-4e64-841f-b85f26bba182",
-                "ipConfigurations": [
-                    {
-                        "name": "NicIPConfigName1",
-                        "etag": "W/\"bceb909a-606c-451b-a72e-0329747a928a\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "10.0.0.6",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "subnet": {
-                                "id": "[parameters('networkInterfaces_sunlab_db_01_id')]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4",
-                            "loadBalancerBackendAddressPools": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/backendAddressPools/BackendPool1')]"
-                                }
-                            ],
-                            "loadBalancerInboundNatRules": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/inboundNatRules/Tcp3389e1840999-4042-4d65-a94d-43e3241e8d0c')]"
-                                }
-                            ]
-                        }
+                "ipConfigurations": [{
+                    "name": "NicIPConfigName1",
+                    "etag": "W/\"bceb909a-606c-451b-a72e-0329747a928a\"",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "privateIPAddress": "10.0.0.6",
+                        "privateIPAllocationMethod": "Dynamic",
+                        "subnet": {
+                            "id": "[variables('networkInterfaces_sunlab_db_01_id')]"
+                        },
+                        "primary": true,
+                        "privateIPAddressVersion": "IPv4",
+                        "loadBalancerBackendAddressPools": [{
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name')), '/backendAddressPools/BackendPool1')]"
+                        }],
+                        "loadBalancerInboundNatRules": [{
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name')), '/inboundNatRules/Tcp3389e1840999-4042-4d65-a94d-43e3241e8d0c')]"
+                        }]
                     }
-                ],
+                }],
                 "dnsSettings": {
                     "dnsServers": [],
                     "appliedDnsServers": []
@@ -438,18 +381,18 @@
                 "enableIPForwarding": false,
                 "primary": true,
                 "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_db_01_name'))]"
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_db_01_name'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_db_01_name'))]"
+                "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_db_01_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/networkInterfaces/sunlab-win-01'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/networkInterfaces/sunlab-win-01'.",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_sunlab_win_01_name')]",
+            "name": "[variables('networkInterfaces_sunlab_win_01_name')]",
             "apiVersion": "2017-06-01",
             "location": "eastus",
             "tags": {
@@ -460,32 +403,26 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "resourceGuid": "b1e74561-9e87-4166-bba5-6971d8e4e44e",
-                "ipConfigurations": [
-                    {
-                        "name": "NicIPConfigName1",
-                        "etag": "W/\"0e9c9bf2-a71e-42f9-a8aa-4c7801bb9e53\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "10.0.0.5",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "subnet": {
-                                "id": "[parameters('networkInterfaces_sunlab_win_01_id')]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4",
-                            "loadBalancerBackendAddressPools": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/backendAddressPools/BackendPool1')]"
-                                }
-                            ],
-                            "loadBalancerInboundNatRules": [
-                                {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name')), '/inboundNatRules/Tcp33890fb55702-ec39-4d75-bba0-fefb6250e0d2')]"
-                                }
-                            ]
-                        }
+                "ipConfigurations": [{
+                    "name": "NicIPConfigName1",
+                    "etag": "W/\"0e9c9bf2-a71e-42f9-a8aa-4c7801bb9e53\"",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "privateIPAddress": "10.0.0.5",
+                        "privateIPAllocationMethod": "Dynamic",
+                        "subnet": {
+                            "id": "[variables('networkInterfaces_sunlab_win_01_id')]"
+                        },
+                        "primary": true,
+                        "privateIPAddressVersion": "IPv4",
+                        "loadBalancerBackendAddressPools": [{
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name')), '/backendAddressPools/BackendPool1')]"
+                        }],
+                        "loadBalancerInboundNatRules": [{
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name')), '/inboundNatRules/Tcp33890fb55702-ec39-4d75-bba0-fefb6250e0d2')]"
+                        }]
                     }
-                ],
+                }],
                 "dnsSettings": {
                     "dnsServers": [],
                     "appliedDnsServers": [],
@@ -496,18 +433,18 @@
                 "enableIPForwarding": false,
                 "primary": true,
                 "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_win_01_name'))]"
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_win_01_name'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sunlab_devtest1441158750000_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sunlab_win_01_name'))]"
+                "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_sunlab_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachines_sunlab_win_01_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest1441158750000/providers/Microsoft.Network/publicIPAddresses/sunlab-devtest1441158750000'.",
+            "comments": "Generalized from resource: '/subscriptions/4d936221-abbd-45f7-9619-35ec924f52bd/resourceGroups/sunlab-devtest/providers/Microsoft.Network/publicIPAddresses/sunlab-devtest'.",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[parameters('publicIPAddresses_sunlab_devtest1441158750000_name')]",
+            "name": "[variables('publicIPAddresses_sunlab_name')]",
             "apiVersion": "2017-06-01",
             "location": "eastus",
             "tags": {
@@ -522,8 +459,8 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('publicIPAddresses_sunlab_devtest1441158750000_name')]",
-                    "fqdn": "[concat(parameters('publicIPAddresses_sunlab_devtest1441158750000_name'),'.eastus.cloudapp.azure.com')]"
+                    "domainNameLabel": "[variables('publicIPAddresses_sunlab_name')]",
+                    "fqdn": "[concat(variables('publicIPAddresses_sunlab_name'),'.eastus.cloudapp.azure.com')]"
                 }
             },
             "dependsOn": []
