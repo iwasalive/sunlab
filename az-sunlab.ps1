@@ -29,14 +29,14 @@ function Create-Lab {
     }
 
     $LabSettings = @{
-        ResourceGroup = $ResourceGroup
         Location = "East US" 
-        TemplateUri = "https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/iis-2vm-sql-1vm/azuredeploy.json"
+        TemplateUri = "https://raw.githubusercontent.com/simkessy/sunlab/master/templates/sunlab.json"
+        ResourceGroup = $ResourceGroup
         Version = $Version
         EnvPrefixName = $EnvPrefixName
         Username = $Username
         Password = $Password
-        Test =  $Test
+        Test =  $true
     }
 
     createLab @LabSettings

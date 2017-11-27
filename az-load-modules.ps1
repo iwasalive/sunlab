@@ -26,7 +26,7 @@ function importModule($module) {
 
 function installModule($module) {
     try {
-        Install-Module $module -confirm:$false
+        Install-Module $module -confirm:$false -AllowClobber
         write-host "Installed module: $module" -ForegroundColor Green
         importModule $module
     }
