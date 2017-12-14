@@ -1,0 +1,23 @@
+---
+- name: Install chocolate 
+  win_chocolatey: 
+    name: '{{ item }}'
+    state: present
+  win_items:
+   - git
+   - googlechrome
+   - jre8
+   - python 
+   - sikulix
+   - notepadplusplus.install
+   - git.install
+   - powershell
+   - dotnet4.5
+   - visualstudiocode
+   - conemu
+   - awscli
+
+- name: Upgrade installed packages
+  win_chocolatey:
+    name: all
+    state: latest
