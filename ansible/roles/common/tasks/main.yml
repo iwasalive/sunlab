@@ -17,8 +17,6 @@
    - conemu
    - awscli
    - sql-server-management-studio
+  async: 60
+  pool: 10
 
-- name: Upgrade installed packages
-  win_chocolatey:
-    name: all
-    state: latest
