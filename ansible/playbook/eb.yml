@@ -1,0 +1,5 @@
+---
+- hosts: eb
+  roles: 
+   - common 
+   - eb
