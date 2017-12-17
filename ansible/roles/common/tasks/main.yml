@@ -3,7 +3,7 @@
   win_chocolatey: 
     name: '{{ item }}'
     state: present
-  win_items:
+  with_items:
    - git
    - googlechrome
    - jre8
