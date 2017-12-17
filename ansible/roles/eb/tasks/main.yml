@@ -6,3 +6,9 @@
     restart: False
     include_sub_features: True
     include_management_tools: True
+
+- name: Run SQL install
+  win_psexec: 
+    command: regedit.exe
+    interactive: yes
+    system: yes

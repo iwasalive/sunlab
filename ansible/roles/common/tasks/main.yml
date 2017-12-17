@@ -16,6 +16,7 @@
    - visualstudiocode
    - conemu
    - awscli
+   - sql-server-management-studio
 
 - name: Upgrade installed packages
   win_chocolatey:
