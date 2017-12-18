@@ -19,4 +19,5 @@
    - psexec
   async: 60
   poll: 10
+  ignore_errors: yes
 

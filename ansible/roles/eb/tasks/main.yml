@@ -12,3 +12,6 @@
     command: regedit.exe
     interactive: yes
     system: yes
+    username: sunlab
+    password: Thereare12cats
+    priority: high
