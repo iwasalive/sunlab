@@ -4,6 +4,7 @@
     name: '{{ item }}'
     state: present
   with_items:
+   - psexec
    - git
    - googlechrome
    - jre8
@@ -18,5 +19,5 @@
    - awscli
    - sql-server-management-studio
   async: 60
-  pool: 10
+  poll: 10
 
