@@ -1,7 +1,7 @@
 ---
 - name: Move all db files to target
   win_copy: 
-    src: {{ item }}
+    src: "{{ item }}"
     dest: C:\Temp\
   with_items:
     - sql-setup.ps1
