@@ -14,10 +14,10 @@
    - git.install
    - powershell
    - dotnet4.5
-   - visualstudiocode
    - conemu
    - awscli
    - sql-server-management-studio
+   - psexec
   async: 60
   poll: 10
 
