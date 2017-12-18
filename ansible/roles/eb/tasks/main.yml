@@ -1,4 +1,14 @@
 ---
+- name: Ensure search service is running
+  win_service: 
+   name: WSearch
+   state: started
+
+- name: Create temp directory
+  win_file: 
+    path: C:\Temp
+    state: directory
+
 - name: Install IIS Web-Server with sub features and management tools
   win_feature:
     name: Web-Server
@@ -7,11 +17,19 @@
     include_sub_features: True
     include_management_tools: True
 
-- name: open regedit
-  win_psexec: 
-    command: regedit.exe
-    interactive: yes
-    system: yes
-    username: sunlab
-    password: Thereare12cats
-    priority: high
+- name: Install .NET 3.5
+  win_feature:
+    name: Web-Asp-Net
+    state: present
+
+- name: Install .NET 4.5
+  win_feature:
+    name: Web-Asp-Net45
+    state: present
+
+- name: Install SNMP
+  win_feature:
+    name: SNMP-Service
+    state: present
+    include_sub_features: True
+    include_management_tools: True

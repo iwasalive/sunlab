@@ -1,0 +1,21 @@
+---
+- name: Move sql config to Temp
+  file: 
+   src: SqlConfig.ini
+   dest: C:\Temp
+  
+- name: Move SQLServer.exe to Temp 
+  file: 
+   src: SQLServer.exe
+   dest: C:\Temp
+
+- name: Move SQL Install script to Temp 
+
+- name: Run Install SQL script
+  win_psexec:
+    command: PowerShell C:\Temp\sql-setup.ps1
+    interactive: yes
+    system: yes
+    username: sunlab
+    password: Thereare12cats
+    priority: high
