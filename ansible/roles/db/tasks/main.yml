@@ -1,8 +1,8 @@
 ---
 - name: Move all db files to target
-  copy: 
-    src: "{{ item }}"
-    dest: C:\Temp
+  win_copy: 
+    src: {{ item }}
+    dest: C:\Temp\
   with_items:
     - sql-setup.ps1
     - sql-config.ini
