@@ -1,15 +1,10 @@
 ---
-- name: Move sql config to Temp
-  file: 
-   src: SqlConfig.ini
-   dest: C:\Temp
-  
-- name: Move SQLServer.exe to Temp 
-  file: 
-   src: SQLServer.exe
-   dest: C:\Temp
-
-- name: Move SQL Install script to Temp 
+- name: Move all db files to target
+  copy: 
+    src: "{{ item }}"
+    dest: C:\Temp
+  with_fileglob:
+    - /files/*
 
 - name: Run Install SQL script
   win_psexec:
