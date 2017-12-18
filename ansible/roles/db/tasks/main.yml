@@ -3,8 +3,10 @@
   copy: 
     src: "{{ item }}"
     dest: C:\Temp
-  with_fileglob:
-    - /files/*
+  with_items:
+    - sql-setup.ps1
+    - sql-config.ini
+    - sql-server-2017.exe
 
 - name: Run Install SQL script
   win_psexec:
