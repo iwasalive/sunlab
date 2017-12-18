@@ -1,5 +1,4 @@
 # Install SQL Server
 
-Set-Location C:\Temp
 
-. .\SQLServer.exe /ConfigurationFile=C:\Temp\SqlConfig.ini /IAcceptSqlServieLicenseTerm /MediaPath=C:\SQL
+. .\sql-server-2017.exe /Q /ConfigurationFile=C:\Temp\sql-config.ini /IAcceptSqlServieLicenseTerm /MediaPath=C:\SQL /ENU
