@@ -1,4 +1,2 @@
 # Install SQL Server
-
-
-. .\sql-server-2017.exe /Q /ConfigurationFile=C:\Temp\sql-config.ini /IAcceptSqlServieLicenseTerm /MediaPath=C:\SQL /ENU
+c:\temp\sql-server-2017.exe /ConfigurationFile="C:\temp\sql-config.ini" /MediaPath="C:\Temp\SQL" /iacceptsqlserverlicenseterms /indicateprogress=false /q
