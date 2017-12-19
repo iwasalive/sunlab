@@ -16,3 +16,15 @@
     username: sunlab
     password: Thereare12cats
     priority: high
+
+- name: Create a task to run a PowerShell script
+  win_scheduled_task:
+    name: Install SQL
+    description: Run a PowerShell script
+    executable: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+    arguments: -ExecutionPolicy Unrestricted -NonInteractive -File C:\Temp\sql-setup.ps1
+    time: 8:10pm
+    frequency: once
+    state: present
+    enabled: yes
+    runlevel: highest
