@@ -8,15 +8,6 @@
     - sql-config.ini
     - sql-server-2017.exe
 
-- name: Run Install SQL script
-  win_psexec:
-    command: PowerShell C:\Temp\sql-setup.ps1
-    interactive: yes
-    system: yes
-    username: sunlab
-    password: Thereare12cats
-    priority: high
-
 - name: Create a task to run a PowerShell script
   win_scheduled_task:
     name: Install SQL
@@ -28,3 +19,7 @@
     state: present
     enabled: yes
     runlevel: highest
+
+- name: Wait for SQL Server to be installed before continuing
+  wait_for: 
+    

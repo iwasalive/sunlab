@@ -33,3 +33,8 @@
     state: present
     include_sub_features: True
     include_management_tools: True
+
+- name: Install WIF 3.5
+  win_feature:
+    name: Windows-Identity-Foundation
+    state: present
