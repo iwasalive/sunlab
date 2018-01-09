@@ -42,7 +42,6 @@ function deployTemplate {
             envPrefixName = $EnvPrefixName
             username = $Username
             password = $Password
-            Force = $true
         }
 
         If ($Test) {

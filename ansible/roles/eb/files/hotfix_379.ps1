@@ -99,4 +99,19 @@ Copy-Files("ETM.2.2.2.Mssql.zip", $ebDatabasePath)
 Copy-Files("ProjectWise.2.2.2.Mssql.zip", $ebDatabasePath)
 Copy-Files("StagedImport.15.6.1.Mssql.zip", $ebDatabasePath)
 
+### Update Instructions: Web Server ###
 
+# run msi 
+function Run-MSI($path) {
+    $errorFile = $path.split("\")[-1]
+    try {
+        msiexec.exe /log "c:\logs\$errorFile" /i $path /qn /passive
+    } catch {
+        Write-Host "failed to run msi"
+    }
+}
+
+Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Web Applications\eB Web Applications (x86).msi")
+Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Change Package Plug-In\eB Change Package Plug-In (x86).msi")
+Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Engineering Designer Web Plug-Ins\eB Engineering Designer Web Plug-Ins (x86).msi")
+Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB ETM\eB ETM (x64).msi")
