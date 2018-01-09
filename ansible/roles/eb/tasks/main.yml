@@ -1,8 +1,8 @@
 ---
-- name: Ensure search service is running
-  win_service: 
-   name: WSearch
-   state: started
+# - name: Ensure search service is running
+#   win_service: 
+#    name: WSearch
+#    state: started
 
 - name: Create temp directory
   win_file: 
