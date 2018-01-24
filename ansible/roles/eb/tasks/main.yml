@@ -43,3 +43,17 @@
     name: Windows-Identity-Foundation
     state: present
   ignore_errors: yes 
+
+- name: Install Message Queuing Services
+  win_feature:
+    name: MSMQ-Server
+    state: present
+  ignore_errors: yes 
+
+- name: Install Windows Indexing Service
+  win_feature:
+    name: FS-Indexing-Service
+    state: present
+  ignore_errors: yes 
+
+
