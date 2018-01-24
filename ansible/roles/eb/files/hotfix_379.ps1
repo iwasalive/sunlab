@@ -111,7 +111,13 @@ function Run-MSI($path) {
     }
 }
 
-Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Web Applications\eB Web Applications (x86).msi")
-Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Change Package Plug-In\eB Change Package Plug-In (x86).msi")
-Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB Engineering Designer Web Plug-Ins\eB Engineering Designer Web Plug-Ins (x86).msi")
-Run-MSI("C:\Users\sunlab\Downloads\02. EDMS\FtHills\Hotfixes\hotfix_379\v15.6.1-HF00379\eB ETM\eB ETM (x64).msi")
+# Update binaries (uninstall install but this is first run so just install)
+Run-MSI("..\eB Web Applications (x86).msi")
+Run-MSI("..\eB Change Package Plug-In (x86).msi")
+Run-MSI("..\eB Engineering Designer Web Plug-Ins (x86).msi")
+Run-MSI("..\eB ETM (x64).msi")
+Run-MSI("..\eB Bulk Transfer Configuration Tool (x86)")
+Run-MSI("..\eB CAD Connect (x86)")
+Run-MSI("..\eB Director (x86)")
+Run-MSI("..\eB Engineering Designer (x86)")
+
